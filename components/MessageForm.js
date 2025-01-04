@@ -6,12 +6,27 @@ const MessageForm = ({ onSubmit }) => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        onSubmit({ name, email, message });
-        setName('');
-        setEmail('');
-        setMessage('');
+
+        // Send the message to the server
+        const response = await fetch('/api/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, message }),
+        });
+
+        if (response.ok) {
+            console.log('Message sent successfully');
+            // Optionally reset the form
+            setName('');
+            setEmail('');
+            setMessage('');
+        } else {
+            console.error('Error sending message');
+        }
     };
 
     return (
