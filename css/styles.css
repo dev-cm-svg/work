@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+#liveChat {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+} 

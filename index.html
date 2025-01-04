@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Reservation System</title>
+</head>
+<body>
+    <h1>Make a Reservation</h1>
+    <form id="reservationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message"></textarea>
+        
+        <button type="submit">Reserve</button>
+    </form>
+    
+    <div id="liveChat">
+        <h2>Live Chat</h2>
+        <div id="chatBox"></div>
+        <input type="text" id="chatInput" placeholder="Type a message...">
+        <button id="sendChat">Send</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
