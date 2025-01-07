@@ -7,7 +7,7 @@ const Navbar = () => {
         <AppBar position="fixed" id="navbar">
             <Toolbar>
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                    Reservation System
+                    Site Solution
                 </Typography>
                 <Link href="/" passHref>
                     <Button color="inherit">Home</Button>

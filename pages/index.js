@@ -70,7 +70,7 @@ const Home = () => {
             fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
           }}
         >
-          Welcome to Site Solutions
+          Welcome to Site Solution
         </Typography>
         <Typography
           variant="h5"
@@ -90,8 +90,8 @@ const Home = () => {
 
       <Container maxWidth="md" ref={servicesRef}>
         {/* Services Section */}
-        <Box sx={{ mt: 12, mb: 12, textAlign: "center" }}>
-          <Typography variant="h4" component="h3" gutterBottom>
+        <Box sx={{ mt: 15, mb: 15, textAlign: "center" }}>
+          <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 10 }}>
             Our Services
           </Typography>
           <Box
@@ -100,6 +100,7 @@ const Home = () => {
               justifyContent: "space-around",
               flexWrap: "wrap",
               mt: 4,
+              mb: 10,
             }}
           >
             <Box
@@ -152,7 +153,7 @@ const Home = () => {
             </Box>
           </Box>
           {/* Get in Touch Button */}
-          <Box sx={{ mt: 4 }}>
+          <Box sx={{ mt: 4, mb: 10 }}>
             <Button variant="contained" color="secondary" onClick={scrollToContact}>
               Get in Touch
             </Button>
@@ -160,7 +161,7 @@ const Home = () => {
         </Box>
 
         {/* Contact Section */}
-        <Box ref={contactRef} sx={{ mt: 12, textAlign: "center" }}>
+        <Box ref={contactRef} sx={{ mt: 16, textAlign: "center" }}>
           <Typography variant="h4" component="h3" gutterBottom>
             Contact Us
           </Typography>
@@ -171,7 +172,7 @@ const Home = () => {
         </Box>
         <Box sx={{ mb: 12 }}>
           {/* Toggle Buttons for Message and Reservation */}
-          <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>
+          <Box sx={{ mt: 6, display: "flex", justifyContent: "center" }}>
             <ButtonGroup value={selected} exclusive aria-label="text alignment">
               <Button
                 value="message"
