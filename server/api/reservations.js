@@ -1,5 +1,6 @@
 import dbConnect from '../utils/dbConnect';
 import Reservation from '../model/Reservation'; // Import the Reservation model
+const nodemailer = require('nodemailer');
 
 // API endpoint to handle reservation submissions
 export const postReservation = async (req, res) => {
@@ -8,7 +9,7 @@ export const postReservation = async (req, res) => {
         return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 
-    const { date, time } = req.body;
+    const { date, time, name, email } = req.body;
 
     // Validate input
     if (!date || !time) {
@@ -18,7 +19,7 @@ export const postReservation = async (req, res) => {
     try {
         // Connect to MongoDB
         await dbConnect(); 
-
+        let sendEmail = false;
         // Check if a reservation for the date already exists
         const existingReservation = await Reservation.findOne({ 'reservations': { $exists: true } });
 
@@ -29,11 +30,13 @@ export const postReservation = async (req, res) => {
                 const existingSlots = existingReservation.reservations.get(date);
                 if (!existingSlots.includes(time)) {
                     existingSlots.push(time);
+                    sendEmail = true;
                 }
                 existingReservation.reservations.set(date, existingSlots);
             } else {
                 // If the date does not exist, create a new entry
                 existingReservation.reservations.set(date, [time]);
+                sendEmail = true;
             }
             await existingReservation.save();
             res.status(200).json({ message: 'Reservation updated successfully!' });
@@ -43,7 +46,13 @@ export const postReservation = async (req, res) => {
                 reservations: new Map([[date, [time]]]),
             });
             await newReservation.save();
+            sendEmail = true;
             res.status(200).json({ message: 'New reservation saved successfully!' });
+        }
+
+        if (sendEmail) {
+            await sendReservationEmail(name, email, date, timeSlot);
+
         }
     } catch (error) {
         console.error('Error saving reservation:', error);
